@@ -45,7 +45,8 @@ typedef	struct	s_core
   t_maps *maps;
 }
 				t_core;
-
+/***************************maps.c*****************/
+char	*open_maps(char *ber);
 /***************************key.c******************/
 int key_hook(int keycode, t_core *core);
 int close_window(t_core *core);
