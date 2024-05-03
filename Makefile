@@ -3,7 +3,7 @@ NAME = so_long
 
 SRCS_DIR = ./src/
 
-SRCS = $(addprefix $(SRCS_DIR), main.c key.c)
+SRCS = $(addprefix $(SRCS_DIR), main.c key.c maps.c)
 OBJS = ${SRCS:.c=.o}
 
 LIBFT = ./lib/libft.a

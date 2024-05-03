@@ -31,17 +31,18 @@ typedef struct s_player
 
 typedef	struct	s_maps
 {
-	int x;
-	int y;
-    char **mapsx_y;
-    int exit_ok;
-    int collect_ok;
+  int  x;
+  int  y;
+  char  **mapsx_y;
+  int exit_ok;
+  int collect_ok;
 }				t_maps;
 
 typedef	struct	s_core
 {
 	void *mlx;
-    void *win;
+  void *win;
+  t_maps *maps;
 }
 				t_core;
 
