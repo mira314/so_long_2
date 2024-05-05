@@ -3,7 +3,8 @@ NAME = so_long
 
 SRCS_DIR = ./src/
 
-SRCS = $(addprefix $(SRCS_DIR), main.c key.c maps.c)
+SRCS = $(addprefix $(SRCS_DIR), main.c key.c maps.c \
+	layer.c player.c move_player.c items.c)
 OBJS = ${SRCS:.c=.o}
 
 LIBFT = ./lib/libft.a
@@ -15,7 +16,7 @@ CC = gcc
 
 FLAGS = -Wall -Wextra -Werror
 
-VALGRIND		= valgrind 
+VALGRIND		= valgrind --leak-check=full
 #--leak-check=full --show-leak-kinds=all \
 #--track-origins=yes --quiet --tool=memcheck --keep-debuginfo=yes
 

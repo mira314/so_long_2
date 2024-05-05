@@ -19,10 +19,18 @@ int close_window(t_core *core)
 
 int key_hook(int keycode, t_core *core)
 {
-	ft_printf("%d\n", keycode);
+	//ft_printf("%d\n", keycode);
     if (keycode == 65307)
     {
         close_window(core);
     }
+    if (keycode == 119 || keycode == 65362)
+        move_player_up(core);
+    if (keycode == 115 || keycode == 65364)
+        move_player_down(core);
+    if (keycode == 97 || keycode == 65361)
+        move_player_left(core);
+    if (keycode == 100 || keycode == 65363)
+        move_player_right(core);
     return 0;
 }

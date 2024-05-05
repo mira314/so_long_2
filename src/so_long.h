@@ -18,36 +18,61 @@
 
 typedef struct s_pos
 {
-	size_t	px;
-	size_t	py;
+	int	px;
+	int	py;
 }				t_pos;
 
 typedef struct s_player 
 {
 	t_pos pos;
 	t_pos begin_pos;
-}				t_player;
-
+}	t_player;
 
 typedef	struct	s_maps
 {
-  int  x;
-  int  y;
-  char  **mapsx_y;
-  int exit_ok;
-  int collect_ok;
-}				t_maps;
+	int		x;
+	int		y;
+	char	**mapsx_y;
+	int		exit;
+	int		collect;
+	int 	player;
+	int 	error;
+}	t_maps;
 
 typedef	struct	s_core
 {
 	void *mlx;
-  void *win;
-  t_maps *maps;
-}
-				t_core;
+	void *win;
+	t_maps *maps;
+	t_player *player;
+  int count_move;
+}	t_core;
+
 /***************************maps.c*****************/
 char	*open_maps(char *ber);
+t_maps  *builder_maps(char *ber);
+void  see_maps(t_maps *maps);
+void free_maps(t_maps *maps);
 /***************************key.c******************/
 int key_hook(int keycode, t_core *core);
 int close_window(t_core *core);
+/***************************layer.c******************/
+void    set_layer(t_xvar *mlx, t_win_list *win, t_maps *maps);
+void    set_water(t_xvar *mlx, t_win_list *win, int x, int y);
+void    defin_watter(t_xvar *mlx, t_win_list *win, t_maps *maps);
+void watter_error(t_maps *maps);
+void    set_layer_add(t_xvar *mlx, t_win_list *win, int x, int y);
+/***************************player.c******************/
+void defin_player(t_xvar *mlx, t_win_list *win, t_core *core);
+void    set_player(t_xvar *mlx, t_win_list *win, int x, int y);
+/***************************move.c******************/
+void  move_player_up(t_core *core);
+void  move_player_down(t_core *core);
+void	move_player_right(t_core *core);
+void	move_player_left(t_core *core);
+/*****************************items.c****************/
+void    set_collect(t_xvar *mlx, t_win_list *win, int x, int y);
+void defin_collect(t_xvar *mlx, t_win_list *win, t_maps *maps);
+void    set_exit(t_xvar *mlx, t_win_list *win, int x, int y);
+void defin_exit(t_xvar *mlx, t_win_list *win, t_maps *maps);
 #endif
