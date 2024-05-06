@@ -4,7 +4,7 @@ NAME = so_long
 SRCS_DIR = ./src/
 
 SRCS = $(addprefix $(SRCS_DIR), main.c key.c maps.c \
-	layer.c player.c move_player.c items.c)
+	layer.c player.c move_player.c items.c maps_pars.c)
 OBJS = ${SRCS:.c=.o}
 
 LIBFT = ./lib/libft.a

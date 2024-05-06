@@ -75,4 +75,6 @@ void    set_collect(t_xvar *mlx, t_win_list *win, int x, int y);
 void defin_collect(t_xvar *mlx, t_win_list *win, t_maps *maps);
 void    set_exit(t_xvar *mlx, t_win_list *win, int x, int y);
 void defin_exit(t_xvar *mlx, t_win_list *win, t_maps *maps);
+/**************************** maps_pars.c****************/
+
 #endif

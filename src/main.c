@@ -25,7 +25,7 @@ int main(void)
 	defin_collect(core.mlx, core.win, core.maps);
 	defin_exit(core.mlx, core.win, core.maps);
 	mlx_hook(core.win, 17, 0, close_window, &core);
-    mlx_hook(core.win, 2, 1L<<0, key_hook, &core);
+  mlx_hook(core.win, 2, 1L<<0, key_hook, &core);
 
 	mlx_loop(core.mlx);
  	mlx_destroy_window(core.mlx,core.win);
