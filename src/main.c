@@ -11,22 +11,19 @@
 /* ************************************************************************** */
 #include "so_long.h"
 
-int main(void)
+static void ini_game(t_core core)
 {
-	t_core	core;
 	core.maps = builder_maps("maps/wall_only.ber");
-
-	see_maps(core.maps);
 	core.mlx = mlx_init();
 	core.win = mlx_new_window(core.mlx, (core.maps->x * 40), (core.maps->y * 40), "SO_LONG");
 	set_layer(core.mlx, core.win, core.maps);
-	defin_player(core.mlx, core.win, &core);
+	see_maps(core.maps);
 	defin_watter(core.mlx, core.win, core.maps);
 	defin_collect(core.mlx, core.win, core.maps);
 	defin_exit(core.mlx, core.win, core.maps);
+	defin_player(core.mlx, core.win, &core);
 	mlx_hook(core.win, 17, 0, close_window, &core);
-  mlx_hook(core.win, 2, 1L<<0, key_hook, &core);
-
+  	mlx_hook(core.win, 2, 1L<<0, key_hook, &core);
 	mlx_loop(core.mlx);
  	mlx_destroy_window(core.mlx,core.win);
  	mlx_destroy_display(core.mlx);
@@ -34,5 +31,15 @@ int main(void)
  	free(core.mlx);
  	free(core.player);
  	free_maps(core.maps);
+}
+
+int main(void)
+{
+	t_core	core;
+	t_maps	*maps_pars;
+	maps_pars = builder_maps("maps/wall_only.ber");
+
+	free_maps(maps_pars);
+	ini_game(core);
 	return 0;
 }
