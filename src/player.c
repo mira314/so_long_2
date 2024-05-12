@@ -50,3 +50,34 @@ void defin_player(t_xvar *mlx, t_win_list *win, t_core *core)
         y++;
     }
 }
+
+t_pos   *get_position(t_maps *maps, char target)
+{
+    int x;
+    int y;
+    t_pos *position;
+
+    x = 0;
+    y = 0;
+    position = malloc(sizeof(t_pos));
+    if (!position)
+        return (NULL);
+    position->px = 0;
+    position->py = 0;
+    while (y < maps->y)
+    {
+        while (x < maps->x)
+        {
+            if (maps->mapsx_y[y][x] == target)
+            {
+                position->px = x;
+                position->py = y;
+                return (position);
+            }
+            x++;
+        }
+        x = 0;
+        y++;
+    }
+    return (position);
+}

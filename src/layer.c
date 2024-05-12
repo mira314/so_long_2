@@ -55,7 +55,6 @@ void    set_layer_add(t_xvar *mlx, t_win_list *win, int x, int y)
     int H;
 
     img = mlx_xpm_file_to_image(mlx, "font/Tile_15_40x40.xpm", &W, &H);
-
     mlx_put_image_to_window(mlx, win, img, x, y);
     mlx_destroy_image(mlx, img);
 }
@@ -89,9 +88,10 @@ void watter_error(t_maps *maps)
 
     x = 0;
     y = 0;
+
     while (x < maps->x)
     {
-        if (maps->mapsx_y[0][x] == '0' || maps->mapsx_y[maps->y - 1][x] == '0')
+        if (maps->mapsx_y[0][x] != '1' || maps->mapsx_y[maps->y - 1][x] != '1')
         {
             maps->error = 1;
             break;
@@ -100,7 +100,7 @@ void watter_error(t_maps *maps)
     }
     while (y < maps->y)
     {
-        if (maps->mapsx_y[y][0] == '0' || maps->mapsx_y[y][maps->x - 1] == '0')
+        if (maps->mapsx_y[y][0] != '1' || maps->mapsx_y[y][maps->x - 1] != '1')
         {
             maps->error = 1;
             break ;

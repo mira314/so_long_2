@@ -72,7 +72,6 @@ void defin_exit(t_xvar *mlx, t_win_list *win, t_maps *maps)
             }
             x++;
         }
-        printf("\n");
         x = 0;
         y++;
     }

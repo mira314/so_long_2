@@ -35,6 +35,8 @@ typedef	struct	s_maps
 	char	**mapsx_y;
 	int		exit;
 	int		collect;
+	int		collect_ok;
+	int		exit_ok;
 	int 	player;
 	int 	error;
 }	t_maps;
@@ -65,6 +67,7 @@ void    set_layer_add(t_xvar *mlx, t_win_list *win, int x, int y);
 /***************************player.c******************/
 void defin_player(t_xvar *mlx, t_win_list *win, t_core *core);
 void    set_player(t_xvar *mlx, t_win_list *win, int x, int y);
+t_pos   *get_position(t_maps *maps, char target);
 /***************************move.c******************/
 void  move_player_up(t_core *core);
 void  move_player_down(t_core *core);
@@ -76,5 +79,7 @@ void defin_collect(t_xvar *mlx, t_win_list *win, t_maps *maps);
 void    set_exit(t_xvar *mlx, t_win_list *win, int x, int y);
 void defin_exit(t_xvar *mlx, t_win_list *win, t_maps *maps);
 /**************************** maps_pars.c****************/
-
+void flood_fill(char **map, int x, int y, char target, char new_char) ;
+int acces_collect(t_maps *maps, char target);
+char	give_object(char **maps, int x, int y);
 #endif

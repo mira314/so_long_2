@@ -11,13 +11,12 @@
 /* ************************************************************************** */
 #include "so_long.h"
 
-static void ini_game(t_core core)
+static void ini_game(t_core core, char *str)
 {
-	core.maps = builder_maps("maps/wall_only.ber");
+	core.maps = builder_maps(str);
 	core.mlx = mlx_init();
 	core.win = mlx_new_window(core.mlx, (core.maps->x * 40), (core.maps->y * 40), "SO_LONG");
 	set_layer(core.mlx, core.win, core.maps);
-	see_maps(core.maps);
 	defin_watter(core.mlx, core.win, core.maps);
 	defin_collect(core.mlx, core.win, core.maps);
 	defin_exit(core.mlx, core.win, core.maps);
@@ -27,19 +26,63 @@ static void ini_game(t_core core)
 	mlx_loop(core.mlx);
  	mlx_destroy_window(core.mlx,core.win);
  	mlx_destroy_display(core.mlx);
- 	see_maps(core.maps);
  	free(core.mlx);
  	free(core.player);
  	free_maps(core.maps);
 }
+static	int maps_pars(char *maps, int test)
+{
+	t_maps	*maps_pars;
+	t_pos *pos;
 
-int main(void)
+	maps_pars = builder_maps(maps);
+	pos = get_position(maps_pars, 'P');
+	flood_fill(maps_pars->mapsx_y, pos->px, pos->py, '0', 'A');
+	if (acces_collect(maps_pars, 'C') == 0)
+		{
+			ft_printf("%s\n","acces items error");
+			test = 0;
+		}
+	if (acces_collect(maps_pars, 'E') == 0)
+		{
+			ft_printf("%s\n","acces Exit error");
+			test = 0;
+		}
+	if (maps_pars->exit != 1 || maps_pars->collect < 1 || maps_pars->player != 1 || maps_pars->error == 1)
+	{
+		ft_printf("%s\n","maps error");
+		test = 0;
+	}
+	free_maps(maps_pars);
+	free(pos);
+	return (test);
+} 
+
+char	give_object(char **maps, int x, int y)
+{
+	char objet;
+
+	objet = maps[y][x];
+	return (objet);
+}
+
+/* teste si .ber a faire*/ 
+
+int main(int argc, char *argv[])
 {
 	t_core	core;
-	t_maps	*maps_pars;
-	maps_pars = builder_maps("maps/wall_only.ber");
-
-	free_maps(maps_pars);
-	ini_game(core);
+	int test;
+	if (argc == 2)
+	{
+	test = maps_pars(argv[1], 1);
+	if (test == 0)
+		return (0);
+	ini_game(core, argv[1]);
+	}
+	else
+	{
+		ft_printf("Error\n");
+	}
+	
 	return 0;
 }
