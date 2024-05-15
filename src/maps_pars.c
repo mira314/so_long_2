@@ -51,3 +51,19 @@ int acces_collect(t_maps *maps, char target)
     }
 		return (1);
 }
+
+int test_name_maps(char *name))
+{
+	int len;
+	int i;
+
+	i = 0;
+	len = ft_strlen(name);
+	len = len - 4;
+	if (ft_strncmp(&name[len], ".ber", 4))
+	{
+		return (1);		
+	}
+	ft_printf("error, name path is not correct \n");
+	return (0)
+}
