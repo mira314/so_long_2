@@ -25,7 +25,7 @@ all: $(NAME)
 %.o: %.c
 	@$(CC) ${FLAGS} ${MINILIBX_FLAGS} -o $@ -c $?
 
-$(NAME): ${LIBFT} $(NAME) $(OBJS) ${MLX} ${MLX_Linux}
+$(NAME): ${LIBFT} $(OBJS) ${MLX} ${MLX_Linux}
 	${CC} ${FLAGS} ${SRCS} -o $(NAME) ${LIBFT} ${MLX} ${MLX_Linux} ${MINILIBX_FLAGS}
 
 ${MLX}:

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vrandria <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vrandria <vrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 07:31:52 by vrandria          #+#    #+#             */
-/*   Updated: 2024/06/23 07:32:09 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/06/23 09:29:13 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static void	move_helps(t_core *core, t_pos spot, int x, int y)
 {
-	set_player(core->mlx, core->win, ((spot.px + x) * 40), ((spot.py + y) * 40));
+	set_player(core->mlx, core->win, ((spot.px + x) \
+	* 40), ((spot.py + y) * 40));
 	core->maps->mapsx_y[spot.py][spot.px] = '0';
 	core->maps->mapsx_y[spot.py + y][spot.px + x] = 'P';
 	set_layer_add(core->mlx, core->win, (spot.px * 40), (spot.py * 40));
@@ -26,88 +27,88 @@ static void	move_helps(t_core *core, t_pos spot, int x, int y)
 
 void	move_player_up(t_core *core)
 {
-	t_pos spot;
+	t_pos	spot;
 
 	spot.px = core->player->pos.px;
 	spot.py = core->player->pos.py;
 	if (core->maps->mapsx_y[spot.py - 1][spot.px] == '0')
 		move_helps(core, spot, 0, -1);
-	else if(core->maps->mapsx_y[spot.py - 1][spot.px] == 'C')
+	else if (core->maps->mapsx_y[spot.py - 1][spot.px] == 'C')
 	{
-		move_helps(core,spot, 0, -1);
+		move_helps(core, spot, 0, -1);
 		core->maps->collect -= 1;
 	}
-	else if(core->maps->mapsx_y[spot.py - 1][spot.px] == 'E' && \
+	else if (core->maps->mapsx_y[spot.py - 1][spot.px] == 'E' && \
 			core->maps->collect == 0)
 	{
-		move_helps(core,spot, 0, -1);
+		move_helps(core, spot, 0, -1);
 		close_window(core);
-		ft_printf("%s\n","YOU WIN");
+		ft_printf("%s\n", "YOU WIN");
 	}
 }
 
 void	move_player_down(t_core *core)
 {
-	t_pos spot;
+	t_pos	spot;
 
 	spot.px = core->player->pos.px;
 	spot.py = core->player->pos.py;
 	if (core->maps->mapsx_y[spot.py + 1][spot.px] == '0')
 		move_helps(core, spot, 0, 1);
-	else if(core->maps->mapsx_y[spot.py + 1][spot.px] == 'C')
+	else if (core->maps->mapsx_y[spot.py + 1][spot.px] == 'C')
 	{
-		move_helps(core,spot, 0, 1);
+		move_helps(core, spot, 0, 1);
 		core->maps->collect -= 1;
 	}
-	else if(core->maps->mapsx_y[spot.py + 1][spot.px] == 'E' && \
+	else if (core->maps->mapsx_y[spot.py + 1][spot.px] == 'E' && \
 			core->maps->collect == 0)
 	{
-		move_helps(core,spot, 0, 1);
+		move_helps(core, spot, 0, 1);
 		close_window(core);
-		ft_printf("%s\n","YOU WIN");
+		ft_printf("%s\n", "YOU WIN");
 	}
 }
 
 void	move_player_left(t_core *core)
 {
-	t_pos spot;
+	t_pos	spot;
 
 	spot.px = core->player->pos.px;
 	spot.py = core->player->pos.py;
 	if (core->maps->mapsx_y[spot.py][spot.px - 1] == '0')
-		move_helps(core, spot, -1, 0);
-	else if(core->maps->mapsx_y[spot.py][spot.px - 1] == 'C')
+		move_helps(core, spot, (-1), 0);
+	else if (core->maps->mapsx_y[spot.py][spot.px - 1] == 'C')
 	{
-		move_helps(core,spot, -1, 0);
+		move_helps(core, spot, (-1), 0);
 		core->maps->collect -= 1;
 	}
-	else if(core->maps->mapsx_y[spot.py][spot.px - 1] == 'E' && \
+	else if (core->maps->mapsx_y[spot.py][spot.px - 1] == 'E' && \
 			core->maps->collect == 0)
 	{
-		move_helps(core,spot, -1, 0);
+		move_helps(core, spot, (-1), 0);
 		close_window(core);
-		ft_printf("%s\n","YOU WIN");
+		ft_printf("%s\n", "YOU WIN");
 	}
 }
 
 void	move_player_right(t_core *core)
 {
-	t_pos spot;
+	t_pos	spot;
 
 	spot.px = core->player->pos.px;
 	spot.py = core->player->pos.py;
 	if (core->maps->mapsx_y[spot.py][spot.px + 1] == '0')
 		move_helps(core, spot, 1, 0);
-	else if(core->maps->mapsx_y[spot.py][spot.px + 1] == 'C')
+	else if (core->maps->mapsx_y[spot.py][spot.px + 1] == 'C')
 	{
-		move_helps(core,spot, 1, 0);
+		move_helps(core, spot, 1, 0);
 		core->maps->collect -= 1;
 	}
-	else if(core->maps->mapsx_y[spot.py][spot.px + 1] == 'E' && \
+	else if (core->maps->mapsx_y[spot.py][spot.px + 1] == 'E' && \
 			core->maps->collect == 0)
 	{
-		move_helps(core,spot, 1, 0);
+		move_helps(core, spot, 1, 0);
 		close_window(core);
-		ft_printf("%s\n","YOU WIN");
+		ft_printf("%s\n", "YOU WIN");
 	}
 }

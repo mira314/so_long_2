@@ -6,12 +6,12 @@
 /*   By: vrandria <vrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 07:56:31 by vrandria          #+#    #+#             */
-/*   Updated: 2024/06/23 08:02:09 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/06/23 08:55:42 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
 
-static int acces_test(t_maps *maps, int x,int y)
+static int	acces_test(t_maps *maps, int x, int y)
 {
 	if (maps->mapsx_y[y + 1][x] == 'A')
 		return (1);
@@ -24,9 +24,9 @@ static int acces_test(t_maps *maps, int x,int y)
 	return (0);
 }
 
-void flood_fill(char **map, int x, int y) 
+void	flood_fill(char **map, int x, int y)
 {
-	if (map[y][x] != '0' && map[y][x] != 'P' && map[y][x] != 'C') 
+	if (map[y][x] != '0' && map[y][x] != 'P' && map[y][x] != 'C')
 	{
 		return ;
 	}
@@ -37,7 +37,7 @@ void flood_fill(char **map, int x, int y)
 	flood_fill(map, x, y - 1);
 }
 
-int acces_collect(t_maps *maps, char target)
+int	acces_collect(t_maps *maps, char target)
 {
 	int	x;
 	int	y;
@@ -61,15 +61,15 @@ int acces_collect(t_maps *maps, char target)
 	return (1);
 }
 
-int test_name_maps(char *name)
+int	test_name_maps(char *name)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(name);
 	len = len - 4;
 	if (ft_strncmp(&name[len], ".ber", 4))
 	{
-		return (1);		
+		return (1);
 	}
 	ft_printf("error, name path is not correct \n");
 	return (0);

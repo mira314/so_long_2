@@ -6,7 +6,7 @@
 /*   By: vrandria <vrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:01:49 by vrandria          #+#    #+#             */
-/*   Updated: 2024/06/23 08:03:15 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/06/23 12:46:12 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -69,13 +69,32 @@ char	give_object(char **maps, int x, int y)
 	return (objet);
 }
 
+static int	test_files_exite(char *ber)
+{
+	int	fd;
+
+	fd = open(ber, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_printf("Error path or file doesnt existe \n");
+		close(fd);
+		return (0);
+	}
+	close(fd);
+	return (1);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_core	core;
 	int		test;
+	int		pathfiles;
 
 	if (argc == 2)
 	{
+		pathfiles = test_files_exite(argv[1]);
+		if (pathfiles == 0)
+			return (0);
 		test = maps_pars(argv[1], 1);
 		if (test == 0)
 			return (0);
