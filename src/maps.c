@@ -6,12 +6,12 @@
 /*   By: vrandria <vrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 07:34:52 by vrandria          #+#    #+#             */
-/*   Updated: 2024/04/23 08:11:26 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/06/23 07:25:39 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
 
-static void count_object(char *str, t_maps *maps)
+static void	count_object(char *str, t_maps *maps)
 {
 	int	i;
 
@@ -33,33 +33,33 @@ static void count_object(char *str, t_maps *maps)
 
 char	*open_maps(char *ber)
 {
-  int  fd;
-  char *maps;
-  char	*mappers;
-  char *tmp;
-  
-  maps = ft_strdup("");
-  fd = open(ber, O_RDONLY);
-  while (1)
-    {
-      mappers = get_next_line(fd);
-      if (!mappers)
-        break ;
-      tmp = ft_strdup(maps);
-      free(maps);
-      maps = ft_strjoin((char const *)tmp,(char const *)mappers);
-      free(tmp);
-      free(mappers);
-    }
-  free(mappers);
-  close(fd);
-  return (maps);
+	int		fd;
+	char	*maps;
+	char	*mappers;
+	char	*tmp;
+
+	maps = ft_strdup("");
+	fd = open(ber, O_RDONLY);
+	while (1)
+	{
+		mappers = get_next_line(fd);
+		if (!mappers)
+			break ;
+		tmp = ft_strdup(maps);
+		free(maps);
+		maps = ft_strjoin((char const *)tmp, (char const *)mappers);
+		free(tmp);
+		free(mappers);
+	}
+	free(mappers);
+	close(fd);
+	return (maps);
 }
 
 t_maps	*builder_maps(char *ber)
 {
 	t_maps	*maps;
-	char		*maps_line;
+	char	*maps_line;
 
 	maps = malloc(sizeof(t_maps));
 	maps->y = 0;
@@ -71,31 +71,30 @@ t_maps	*builder_maps(char *ber)
 		maps->y = maps->y + 1;
 	free(maps_line);
 	watter_error(maps);
-	return(maps);
+	return (maps);
 }
 
-void  see_maps(t_maps *maps)
+void	see_maps(t_maps *maps)
 {
-	int y;
+	int	y;
 
 	y = 0;
-
 	while (y < maps->y)
 	{
-		ft_printf("%s\n",maps->mapsx_y[y]);
+		ft_printf("%s\n", maps->mapsx_y[y]);
 		y++;
 	}
-	ft_printf("collect = %d\n",maps->collect);
-	ft_printf("exit = %d\n",maps->exit);
-	ft_printf("player = %d\n",maps->player);
+	ft_printf("collect = %d\n", maps->collect);
+	ft_printf("exit = %d\n", maps->exit);
+	ft_printf("player = %d\n", maps->player);
 }
 
-void free_maps(t_maps *maps)
+void	free_maps(t_maps *maps)
 {
 	int	i;
 
 	i = 0;
-	while(i <= maps->y)
+	while (i <= maps->y)
 	{
 		free(maps->mapsx_y[i]);
 		i++;
