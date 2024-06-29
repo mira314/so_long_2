@@ -6,7 +6,7 @@
 /*   By: vrandria <vrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 07:34:52 by vrandria          #+#    #+#             */
-/*   Updated: 2024/06/23 07:25:39 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/06/29 12:34:26 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -27,6 +27,12 @@ static void	count_object(char *str, t_maps *maps)
 			maps->exit += 1;
 		if (str[i] == 'P')
 			maps->player += 1;
+		if (str[i] != 'E' && str[i] != 'P' && str[i] != 'C' && str[i] != '0' \
+			&& str[i] != '1' && str[i] != 10)
+		{
+			maps->error = 1;
+			ft_printf("'%c' is a %s", str[i], "character unknown so " );
+		}
 		i++;
 	}
 }
