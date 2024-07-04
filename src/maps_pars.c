@@ -6,7 +6,7 @@
 /*   By: vrandria <vrandria@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/23 07:56:31 by vrandria          #+#    #+#             */
-/*   Updated: 2024/06/23 08:55:42 by vrandria         ###   ########.fr       */
+/*   Updated: 2024/07/04 08:32:47 by vrandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -69,8 +69,8 @@ int	test_name_maps(char *name)
 	len = len - 4;
 	if (ft_strncmp(&name[len], ".ber", 4))
 	{
+		ft_printf("error, name path is not correct \n");
 		return (1);
 	}
-	ft_printf("error, name path is not correct \n");
 	return (0);
 }

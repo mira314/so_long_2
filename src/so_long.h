@@ -82,4 +82,5 @@ void	defin_exit(t_xvar *mlx, t_win_list *win, t_maps *maps);
 void	flood_fill(char **map, int x, int y);
 int		acces_collect(t_maps *maps, char target);
 char	give_object(char **maps, int x, int y);
+int		test_name_maps(char *name);
 #endif
